@@ -1,0 +1,713 @@
+{
+  "generatedAt": "2026-08-25T09:05:23Z",
+  "counts": {
+    "places": 968,
+    "toilets": 789,
+    "toiletsAccessible": 763,
+    "tgsi": 357,
+    "conflicts": 82
+  },
+  "categories": [
+    {
+      "key": "restaurant",
+      "label": "Restaurant & Dining",
+      "count": 545
+    },
+    {
+      "key": "cafe",
+      "label": "Cafe & Coffee",
+      "count": 339
+    },
+    {
+      "key": "other",
+      "label": "Other",
+      "count": 20
+    },
+    {
+      "key": "culture",
+      "label": "Culture & Entertainment",
+      "count": 19
+    },
+    {
+      "key": "bar",
+      "label": "Bar & Pub",
+      "count": 18
+    },
+    {
+      "key": "shopping",
+      "label": "Shops & Services",
+      "count": 14
+    },
+    {
+      "key": "health",
+      "label": "Health & Wellness",
+      "count": 8
+    },
+    {
+      "key": "civic",
+      "label": "Library & Civic",
+      "count": 5
+    }
+  ],
+  "councils": [
+    "HORSHAM",
+    "HUME",
+    "INDIGO",
+    "KINGSTON",
+    "KNOX",
+    "LATROBE",
+    "LODDON",
+    "MACEDON RANGES",
+    "MANNINGHAM",
+    "MANSFIELD",
+    "MARIBYRNONG",
+    "MAROONDAH",
+    "MELBOURNE",
+    "MELTON",
+    "MERRI-BEK"
+  ],
+  "dataSources": [
+    {
+      "id": "enaccess_places",
+      "filename": "enaccess_places.csv",
+      "description": "Aggregated accessibility place data from the EnAccess Maps export.",
+      "license": "Project-provided dataset",
+      "origin": "Archived MAST90106 project data"
+    },
+    {
+      "id": "enaccess_reviews",
+      "filename": "enaccess_reviews.csv",
+      "description": "Individual accessibility reviews linked to EnAccess places.",
+      "license": "Project-provided dataset",
+      "origin": "Archived MAST90106 project data"
+    },
+    {
+      "id": "accessible_toilets_15_councils",
+      "filename": "accessible_toilets_15_councils.csv",
+      "description": "Accessible public toilet records filtered to the target councils.",
+      "license": "Public data export, verify before publication",
+      "origin": "Archived MAST90106 project data"
+    },
+    {
+      "id": "melbourne_public_toilets",
+      "filename": "melbourne_public_toilets.csv",
+      "description": "City of Melbourne public toilet point dataset.",
+      "license": "Public data export, verify before publication",
+      "origin": "Archived MAST90106 project data"
+    },
+    {
+      "id": "tactile_ground_surface_indicators",
+      "filename": "tactile_ground_surface_indicators.csv",
+      "description": "City of Melbourne tactile ground surface indicator assets.",
+      "license": "Public data export, verify before publication",
+      "origin": "Archived MAST90106 project data"
+    },
+    {
+      "id": "council_data_reference",
+      "filename": "council_overview.csv",
+      "description": "Reference council accessibility dataset catalogue from the GitHub repo.",
+      "license": "Inherited from reference repository",
+      "origin": "https://github.com/HangyuZhao/MAST90106-group-project-accessibility-map"
+    },
+    {
+      "id": "mountalexander_reference_points",
+      "filename": "council_data/mount_alexander_map.csv",
+      "description": "Reference accessibility points extracted from map images.",
+      "license": "Inherited from reference repository",
+      "origin": "https://github.com/HangyuZhao/MAST90106-group-project-accessibility-map"
+    }
+  ],
+  "conflictResolution": {
+    "totalConflicts": 82,
+    "byStatus": {
+      "needs_human_review": 63,
+      "resolved_majority": 18,
+      "resolved_recent_evidence": 1
+    },
+    "coverage": 0.2317,
+    "humanReviewRate": 0.7683
+  },
+  "dataQuality": {
+    "placesExcludedOutsideVictoria": 95,
+    "excludedPlaces": [
+      {
+        "id": "7c81ccc8-159f-4b43-bb0a-73f349b44084",
+        "name": "Barossa Valley Chocolate Company",
+        "lat": -34.5059587,
+        "lng": 138.9749123
+      },
+      {
+        "id": "8e6b0f09-4e60-4bfe-aef7-3bc730724c15",
+        "name": "Hakata Station",
+        "lat": 33.5897275,
+        "lng": 130.4207274
+      },
+      {
+        "id": "ed368b36-4481-4005-99b3-74474179f25e",
+        "name": "Lavita Italian restaurant",
+        "lat": -34.8066103,
+        "lng": 138.6168804
+      },
+      {
+        "id": "baaad824-dbeb-4339-97e6-be0003b4df58",
+        "name": "Secrets by the Sea",
+        "lat": -34.922465,
+        "lng": 138.4945609
+      },
+      {
+        "id": "9d8c6482-dcb2-480b-a659-51efcc2b256c",
+        "name": "Sneaky's",
+        "lat": -34.648559,
+        "lng": 138.642673
+      },
+      {
+        "id": "6924b867-0eab-4ec8-bb44-cd8c1a254cf5",
+        "name": "Tata Cafe ?????????????\"9 Village Ave",
+        "lat": null,
+        "lng": -37.7818162
+      },
+      {
+        "id": "fb7c645f-f45c-47e3-8e69-59bc43f273cb",
+        "name": "?????????????\"Lujia Town",
+        "lat": null,
+        "lng": null
+      },
+      {
+        "id": "d61b6752-debd-49be-9167-7daac546a182",
+        "name": "1918 Bistro ",
+        "lat": -34.5230524,
+        "lng": 138.9611191
+      },
+      {
+        "id": "b305ff95-7f0b-4ad3-b487-a18b91d7a4b6",
+        "name": "3 Black Bears Pizxa",
+        "lat": -16.9215555,
+        "lng": 145.7760562
+      },
+      {
+        "id": "ff0ce029-41bc-49a2-b3aa-a34fc9c07fb4",
+        "name": "3 Black Bears Pizza",
+        "lat": -27.391293,
+        "lng": 153.0309289
+      },
+      {
+        "id": "ca6d0daf-db7c-4a3d-a060-9fb7b42cb2c8",
+        "name": "3 Black Bears Pizza",
+        "lat": -27.5095958,
+        "lng": 153.0242779
+      },
+      {
+        "id": "cf12e80e-12b2-4ca9-9b93-ae448469d361",
+        "name": "Bakehouse (Wan Chai)",
+        "lat": 22.2758732,
+        "lng": 114.1713876
+      },
+      {
+        "id": "737b006d-261b-4d68-889f-d29c362e1144",
+        "name": "Bargo Sports Club",
+        "lat": -34.3009532,
+        "lng": 150.5871918
+      },
+      {
+        "id": "c93a39e0-1581-4d48-aa56-b1384625ae7b",
+        "name": "Baume",
+        "lat": -32.7973029,
+        "lng": 151.2807848
+      },
+      {
+        "id": "451f83a4-34aa-48e5-9c41-8b3feb671dcd",
+        "name": "Birdies Bistro ",
+        "lat": -35.5163296,
+        "lng": 138.7837473
+      },
+      {
+        "id": "81a4c5a6-cbbf-43d2-92e9-9c57d77013d3",
+        "name": "Black and White Espresso Bar",
+        "lat": -33.8599319,
+        "lng": 151.2088484
+      },
+      {
+        "id": "e9703e42-6ab2-4d6b-ab17-7a2d09eb2d30",
+        "name": "Blossom ?????\"F1/172-210 Burwood Hwy",
+        "lat": null,
+        "lng": -37.8529513
+      },
+      {
+        "id": "c42c9f6e-21fb-44da-b7a2-04af18eeeec5",
+        "name": "Blue Door Cafe",
+        "lat": -32.9243439,
+        "lng": 151.746497
+      },
+      {
+        "id": "fdcc5986-20ab-450f-9e59-07002390b90f",
+        "name": "Bonsai Bali Chinese & Indonesian Cuisine ???????\"Unit 5/1527 Burwood Hwy",
+        "lat": null,
+        "lng": -37.9059113
+      },
+      {
+        "id": "ff24ef96-7636-4513-874b-4180b9f3b515",
+        "name": "Cafe 722",
+        "lat": -34.8870378,
+        "lng": 138.5437672
+      },
+      {
+        "id": "adbaf2b8-0c3f-436d-aa20-f7b9d69a4361",
+        "name": "Cafe Nova ",
+        "lat": -34.603036,
+        "lng": 138.7495854
+      },
+      {
+        "id": "41b03f02-236c-4427-bb72-9c46c4c317ad",
+        "name": "Cataract on Paterson",
+        "lat": -41.4403419,
+        "lng": 147.1309662
+      },
+      {
+        "id": "a7e825bc-9048-40e9-98ad-06cf35a21768",
+        "name": "Cathlic club ",
+        "lat": -34.0727366,
+        "lng": 150.8067462
+      },
+      {
+        "id": "b0e6c834-2d42-42dd-887e-9f5100a48e84",
+        "name": "Chilli Chila ?????\"1A Sir John Monash Dr",
+        "lat": null,
+        "lng": -37.8773775
+      },
+      {
+        "id": "a465d85b-a640-408e-8c0d-cd25686d3742",
+        "name": "Clocktower Cafe",
+        "lat": -32.9231132,
+        "lng": 151.7471883
+      },
+      {
+        "id": "552e3855-c87f-4981-84c4-b27c5051a150",
+        "name": "Club Hotel Chinchilla",
+        "lat": -26.7385044,
+        "lng": 150.6253356
+      },
+      {
+        "id": "afed065e-012f-454e-9268-eef0e0d5321b",
+        "name": "Cockles Cafe",
+        "lat": -35.5303756,
+        "lng": 138.6812422
+      },
+      {
+        "id": "e4bf3783-0791-4d57-8a16-08afe1e3968c",
+        "name": "Colonial Cafe",
+        "lat": -27.5700059,
+        "lng": 152.2695241
+      },
+      {
+        "id": "16a0a700-ee1a-41eb-95b7-3ffde2f5f9ac",
+        "name": "Downtown Cafe",
+        "lat": -26.7396762,
+        "lng": 150.6255208
+      },
+      {
+        "id": "39bd68d2-fcea-487d-8e70-cce705616dda",
+        "name": "East end hub",
+        "lat": -32.9292679,
+        "lng": 151.7854545
+      },
+      {
+        "id": "256f1af7-a578-4bb5-829f-d2f20500074d",
+        "name": "EatAlley ????\"Cnr Swanston & QV Square",
+        "lat": null,
+        "lng": null
+      },
+      {
+        "id": "a35dee90-cb0d-4d85-9c02-b1cdd40d14a6",
+        "name": "Esk Grand Hotel",
+        "lat": -27.2391219,
+        "lng": 152.4211728
+      },
+      {
+        "id": "f0ae90d2-1dc4-4627-91a7-393c8889d64b",
+        "name": "Fairbanks Drive Reserve",
+        "lat": -34.758683,
+        "lng": 138.604023
+      },
+      {
+        "id": "9ab3e149-6bf3-4fdc-bf94-d9cf991f1927",
+        "name": "Farrington's Cafe",
+        "lat": -32.0787331,
+        "lng": 115.8571756
+      },
+      {
+        "id": "e608e75b-267e-4068-9419-8276aa8d9d0f",
+        "name": "Fasta Pasta",
+        "lat": -34.935234,
+        "lng": 138.6062582
+      },
+      {
+        "id": "78644bdc-0033-49e7-822b-3da01538c193",
+        "name": "Floating Cafe",
+        "lat": -27.5786818,
+        "lng": 152.2010674
+      },
+      {
+        "id": "e1b49113-6068-44d0-9551-66ef00332860",
+        "name": "Fortitude Music Hall",
+        "lat": -27.4577936,
+        "lng": 153.034627
+      },
+      {
+        "id": "1ddfe245-16bc-4b64-ba7a-af10ca4ec480",
+        "name": "Ganada Store [PERTH CBD - Food/K-pop/Gift]",
+        "lat": -31.9583261,
+        "lng": 115.86581
+      },
+      {
+        "id": "b37de637-5aa0-4860-9c2a-64e7f693e360",
+        "name": "Gunyama Park Aquatic and Recreation Centre",
+        "lat": -33.9083379,
+        "lng": 151.2074838
+      },
+      {
+        "id": "983efdf2-a43e-4c8f-8f1c-8c9b89f7414f",
+        "name": "Guru?? Seafood Restaurant ",
+        "lat": -27.3296743,
+        "lng": 153.0264935
+      },
+      {
+        "id": "b89b8a78-34e6-4bbd-80a3-1393fb7e1c47",
+        "name": "Halfway Hotel ",
+        "lat": -34.8901858,
+        "lng": 138.5484513
+      },
+      {
+        "id": "89e6e6f4-f62c-40c2-b5a2-31ed3876660a",
+        "name": "I Love Crepes & more",
+        "lat": -32.04477,
+        "lng": 115.81263
+      },
+      {
+        "id": "5447bfb5-e42c-48da-9e06-4589876ad81c",
+        "name": "Jackpot Dining",
+        "lat": -27.5015512,
+        "lng": 153.1024442
+      },
+      {
+        "id": "c6d0e054-e7ee-4837-837d-f01adcd4bf0f",
+        "name": "Little Greek Taverna",
+        "lat": -27.4776969,
+        "lng": 153.0129334
+      },
+      {
+        "id": "7fd38dc0-3458-416c-b5b4-20d81fec3171",
+        "name": "Macclesfield Hotel",
+        "lat": -35.1727101,
+        "lng": 138.8367788
+      },
+      {
+        "id": "f09b0e62-0d3b-419b-939b-df62011f1eac",
+        "name": "Medina sweets ",
+        "lat": -33.8540611,
+        "lng": 150.9857635
+      },
+      {
+        "id": "875bdbd5-0c78-447e-825e-b3ed7310d2e5",
+        "name": "Mockingbird cafe",
+        "lat": -32.9243413,
+        "lng": 151.7469322
+      },
+      {
+        "id": "1e31fcab-a994-461f-a104-6ff4a60ad24a",
+        "name": "Modbury Plaza",
+        "lat": -34.8307464,
+        "lng": 138.6881347
+      },
+      {
+        "id": "c921ab35-50ec-41ae-a33a-6051c6d704c9",
+        "name": "Moffat Beach Brewing co ",
+        "lat": -26.7901612,
+        "lng": 153.1420225
+      },
+      {
+        "id": "1d8b1374-6fc5-4b80-bccd-3011d39afcfd",
+        "name": "Mos Burger ",
+        "lat": -27.4690885,
+        "lng": 153.0245803
+      },
+      {
+        "id": "dbf82450-601e-4d63-85cc-02f95fc27ceb",
+        "name": "Mowbray Hotel",
+        "lat": -41.4064674,
+        "lng": 147.1335601
+      },
+      {
+        "id": "3e156e27-20c3-4ff1-8729-84d0af36d2fc",
+        "name": "Muchos Mexican ",
+        "lat": -32.9386329,
+        "lng": 151.7610197
+      },
+      {
+        "id": "a6226c63-ee7f-41f4-8af6-55915841dbe4",
+        "name": "Mudbar Restaurant Launceston",
+        "lat": -41.4331434,
+        "lng": 147.1328634
+      },
+      {
+        "id": "080b4f95-31e2-4a6c-aab1-2aa75bd348ed",
+        "name": "Mumbai",
+        "lat": -34.9983414,
+        "lng": 138.6224619
+      },
+      {
+        "id": "3806d079-0386-47d2-8f02-8a1e55dafb36",
+        "name": "Mumma Buzz Cafe 'N' Takeaway",
+        "lat": -41.5255336,
+        "lng": 146.6547232
+      },
+      {
+        "id": "ceaf0533-604f-4850-bad0-c1704b88fedc",
+        "name": "Nagomi Sushi",
+        "lat": 51.3007637,
+        "lng": -116.9674358
+      },
+      {
+        "id": "17c2e4d0-1b5d-4ceb-a07c-73055fb43c00",
+        "name": "Nash Gallery",
+        "lat": -27.2371675,
+        "lng": 152.4190727
+      },
+      {
+        "id": "5427f7d3-1105-402d-aca7-c98c13f6cf52",
+        "name": "NeuroMoves St Peters",
+        "lat": -33.9149056,
+        "lng": 151.1770781
+      },
+      {
+        "id": "2d5fc9bf-5e30-4b64-8c9c-340b8e198bab",
+        "name": "OMI 380??\"380 Lonsdale St",
+        "lat": null,
+        "lng": -37.8123541
+      },
+      {
+        "id": "49ba0f0c-1853-40aa-b9d5-f3442ed3def7",
+        "name": "Pancakes on the rocks",
+        "lat": -33.8588323,
+        "lng": 151.2083496
+      },
+      {
+        "id": "ff612e82-f368-478b-a58f-767532d32d74",
+        "name": "Peppers Seaport Launceston",
+        "lat": -41.432952,
+        "lng": 147.1328644
+      },
+      {
+        "id": "a9af7be7-1cb4-426e-bec1-cb3026681897",
+        "name": "Plant 4 and Plant 3 Bowden",
+        "lat": -34.9061155,
+        "lng": 138.5786546
+      },
+      {
+        "id": "5b22db38-08a5-4365-8c4b-0f5387f94cff",
+        "name": "Porters Plainland",
+        "lat": -27.5656755,
+        "lng": 152.4236804
+      },
+      {
+        "id": "319a4cad-4c9d-4a77-b726-f09f21d26c34",
+        "name": "Post Street Social",
+        "lat": -42.8843372,
+        "lng": 147.3319454
+      },
+      {
+        "id": "b7da59cf-acfa-4705-9ec3-425322ae3b23",
+        "name": "Pretoria Hotel",
+        "lat": -34.9124031,
+        "lng": 139.3137067
+      },
+      {
+        "id": "54541f25-ca13-4f05-94c0-d516f56cd9e6",
+        "name": "RACV Hobart Hotel",
+        "lat": -42.88385,
+        "lng": 147.3270028
+      },
+      {
+        "id": "09d41292-c71c-47a1-bcc5-0de910f4759d",
+        "name": "Rashays",
+        "lat": -33.7694441,
+        "lng": 150.6770919
+      },
+      {
+        "id": "22ed5139-7c0f-4c0e-9e88-d3c958bcd9df",
+        "name": "Red Cherry Coffee Shop",
+        "lat": -33.757918,
+        "lng": 150.7131393
+      },
+      {
+        "id": "a0162d09-9304-4f55-9f85-cb17c8859153",
+        "name": "Running Pot (??????????\"99 Kingsway",
+        "lat": null,
+        "lng": -37.8813016
+      },
+      {
+        "id": "07f06012-5a0d-401c-b737-daba0f1f9a5c",
+        "name": "Saigon Kitchen Launceston",
+        "lat": -41.4390258,
+        "lng": 147.1361236
+      },
+      {
+        "id": "ea87f7b4-d581-4bf7-8414-d535893364ef",
+        "name": "Serafino Winery",
+        "lat": -35.2214027,
+        "lng": 138.5547305
+      },
+      {
+        "id": "b52abeb8-c6e9-4c4d-a483-a9e25d1a97e1",
+        "name": "Shamrock Hotel Hobart",
+        "lat": -42.8839546,
+        "lng": 147.3238885
+      },
+      {
+        "id": "ccc78ad8-772a-48fc-a38d-daef5466d011",
+        "name": "Shanghai Red Chadstone ?????\"Shop EX017/1341 Dandenong Rd",
+        "lat": null,
+        "lng": -37.8870267
+      },
+      {
+        "id": "1107fe2a-351d-4919-bf58-c54718b0d657",
+        "name": "Sheshells",
+        "lat": -34.9809146,
+        "lng": 138.5132578
+      },
+      {
+        "id": "1b881f4c-04cd-462b-ab14-3b9cfed135db",
+        "name": "Soul Pantry",
+        "lat": -27.4170108,
+        "lng": 153.0137517
+      },
+      {
+        "id": "3df7610c-639e-4e94-be67-8e0d02bb15a4",
+        "name": "Stalk Jakarta",
+        "lat": -6.2292537,
+        "lng": 106.8097422
+      },
+      {
+        "id": "ff6f5294-8a69-4647-89f3-b4c31c5de74d",
+        "name": "Sticks - Cafe and Korean Restaurant",
+        "lat": -32.0440094,
+        "lng": 115.8125412
+      },
+      {
+        "id": "b1ba72f2-18d0-46dc-861f-eba324f31f44",
+        "name": "Subway",
+        "lat": -31.9577558,
+        "lng": 115.8660084
+      },
+      {
+        "id": "d3a999bb-a970-4a3e-bd03-5415911351ea",
+        "name": "Sydney tower",
+        "lat": -33.8703155,
+        "lng": 151.2088801
+      },
+      {
+        "id": "77c1c1bf-ac35-42bd-8b73-a281b8daf910",
+        "name": "The Bennett Hotel",
+        "lat": -32.9246612,
+        "lng": 151.7439851
+      },
+      {
+        "id": "a18f5ef0-e5a6-4930-b045-d2a189a03e41",
+        "name": "The Exchange Hotel",
+        "lat": -32.9254209,
+        "lng": 151.746812
+      },
+      {
+        "id": "0e8fe1cc-2346-4eec-86c7-70b12206123c",
+        "name": "The Gunshop Cafe",
+        "lat": -27.3823197,
+        "lng": 153.0310915
+      },
+      {
+        "id": "ba000b62-6d26-45b1-8186-b8822b065f35",
+        "name": "The Village Newcastle",
+        "lat": -32.9202465,
+        "lng": 151.7474088
+      },
+      {
+        "id": "9ce24d60-2b1c-406a-96da-c9d68502cb94",
+        "name": "Three Wise Monkeys Cafe",
+        "lat": -27.3303357,
+        "lng": 153.0266649
+      },
+      {
+        "id": "f611a5c7-172f-4330-a8ee-52ebf013fbff",
+        "name": "Tower Hotel",
+        "lat": -34.9128097,
+        "lng": 138.6764898
+      },
+      {
+        "id": "c40f4d2b-2f31-485b-b371-0e51e730450a",
+        "name": "TriCycle Cafe",
+        "lat": -42.8870584,
+        "lng": 147.3337397
+      },
+      {
+        "id": "55d00718-e1cd-4209-b292-079df94fda69",
+        "name": "Uncle Pizza e Panini",
+        "lat": -27.9800558,
+        "lng": 153.4249608
+      },
+      {
+        "id": "e733dffa-f224-4cdd-bac6-d86aa2ae8a25",
+        "name": "Vaby?? Restaurant Picton ",
+        "lat": -34.178991,
+        "lng": 150.613098
+      },
+      {
+        "id": "9d4e248b-2c7d-4e66-b373-fa36df566639",
+        "name": "Vello Precinct (Victoria Park Grandstand)",
+        "lat": -34.9291287,
+        "lng": 138.6229885
+      },
+      {
+        "id": "5a87e850-f8ac-4ce7-be28-8f9e78ce8919",
+        "name": "Wattle Hotel",
+        "lat": -27.868775,
+        "lng": 153.297005
+      },
+      {
+        "id": "2c633a65-0656-4e87-aed1-ba77853acf8d",
+        "name": "Woolshed fine spun",
+        "lat": -34.5357975,
+        "lng": 150.7863699
+      },
+      {
+        "id": "6fd3302d-4b14-4338-b2e3-c47649a8174f",
+        "name": "Yat Lok Restaurant (Central)",
+        "lat": 22.2824828,
+        "lng": 114.1552917
+      },
+      {
+        "id": "1d1ac62c-1dce-40da-b6a6-f8701ceccee7",
+        "name": "Yum Cha Carindale",
+        "lat": -27.5012325,
+        "lng": 153.1024721
+      },
+      {
+        "id": "5fc16650-d455-497d-8d94-ab876b210eb7",
+        "name": "????????",
+        "lat": 30.626443,
+        "lng": 104.01037
+      },
+      {
+        "id": "babf4c4e-e44a-4dbe-89b9-227ae14dbf7e",
+        "name": "?????????Peking Roast Duck Palace??\"21 Coleman Parade",
+        "lat": null,
+        "lng": -37.876799
+      }
+    ],
+    "toiletsExcludedOutsideVictoria": 0,
+    "placeNamesWithEncodingIssue": 53
+  },
+  "bounds": {
+    "lat_min": -39.5,
+    "lat_max": -33.5,
+    "lng_min": 140.0,
+    "lng_max": 150.5
+  }
+}

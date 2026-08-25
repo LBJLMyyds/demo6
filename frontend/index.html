@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EnAccessMap Melbourne — accessibility map</title>
+<meta name="description" content="A community-reported accessibility map of Melbourne venues, public toilets and tactile paving, built for MAST90107 and inspired by EnAccess Maps.">
+<meta name="theme-color" content="#10352A">
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+<!-- Type -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Expanded:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to map</a>
+
+<!-- ============ LOADING SCREEN ============ -->
+<div id="loading-screen" role="status" aria-live="polite">
+  <div class="loading-dots" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <p>Loading Melbourne accessibility data…</p>
+</div>
+
+<div id="app" hidden>
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2.2" fill="currentColor"/><path d="M12 8.5v4.2l-3.6 6.4M12 12.7l3.6 6.4M7.2 11.4h9.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-title">EnAccessMap</span>
+        <span class="brand-sub">Melbourne · community accessibility data</span>
+      </span>
+    </div>
+
+    <nav class="topbar-nav" aria-label="Main views">
+      <button type="button" class="nav-tab is-active" data-view="map" aria-current="page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3 3 5v16l6-2 6 2 6-2V3l-6 2-6-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 3v16M15 5v16" stroke="currentColor" stroke-width="1.6"/></svg>
+        Map
+      </button>
+      <button type="button" class="nav-tab" data-view="quality">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6.5V11c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12.2 11.2 14.4 15.4 9.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Data quality
+      </button>
+      <button type="button" class="nav-tab" data-view="about">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        About
+      </button>
+    </nav>
+
+    <a class="topbar-cta" href="https://github.com/lilylin-star/MAST90107-accessibility-map/tree/Lin-Ma" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.9-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor"/></svg>
+      <span>View source</span>
+    </a>
+  </header>
+
+  <!-- ============ MAP VIEW ============ -->
+  <main id="main">
+  <section id="view-map" class="view is-active" aria-label="Accessibility map">
+
+    <button type="button" id="sidebar-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="sidebar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>Filters &amp; search</span>
+      <span id="active-filter-count" class="filter-count" hidden>0</span>
+    </button>
+
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-scroll">
+
+        <div class="control-group">
+          <label class="control-label" for="search-input">Search venues</label>
+          <div class="search-box">
+            <button type="button" id="search-submit" class="search-submit" aria-label="Search and go to result">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+            <input id="search-input" type="text" placeholder="Try “Lygon Street” or “Token” — press Enter to jump to it" autocomplete="off">
+            <button type="button" id="search-clear" class="search-clear" hidden aria-label="Clear search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="dot-divider" aria-hidden="true"></div>
+
+        <div class="control-group">
+          <h2 class="control-label">Map layers</h2>
+          <ul class="layer-list" id="layer-list">
+            <li class="layer-row">
+              <label>
+                <input type="checkbox" data-layer="venues" checked>
+                <span class="layer-swatch swatch-venue" aria-hidden="true"></span>
+                <span class="layer-name">Venues</span>
+              </label>
+              <span class="layer-count" id="count-venues">0</span>
+            </li>
+            <li class="layer-row">
+              <label>
+                <input type="checkbox" data-layer="toilets" checked>
+                <span class="layer-swatch swatch-toilet" aria-hidden="true"></span>
+                <span class="layer-name">Public toilets</span>
+              </label>
+              <span class="layer-count" id="count-toilets">0</span>
+            </li>
+            <li class="layer-row">
+              <label>
+                <input type="checkbox" data-layer="tgsi">
+                <span class="layer-swatch swatch-tgsi" aria-hidden="true"></span>
+                <span class="layer-name">Tactile paving (TGSI)</span>
+              </label>
+              <span class="layer-count" id="count-tgsi">0</span>
+            </li>
+            <li class="layer-row">
+              <label>
+                <input type="checkbox" data-layer="flagged">
+                <span class="layer-swatch swatch-flag" aria-hidden="true"></span>
+                <span class="layer-name">Flagged for review</span>
+              </label>
+              <span class="layer-count" id="count-flagged">0</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dot-divider" aria-hidden="true"></div>
+
+        <div class="control-group">
+          <h2 class="control-label">Category</h2>
+          <div class="chip-row" id="category-chips" role="group" aria-label="Filter venues by category"></div>
+        </div>
+
+        <div class="dot-divider" aria-hidden="true"></div>
+
+        <div class="control-group">
+          <h2 class="control-label">Must have</h2>
+          <div class="chip-row" id="feature-chips" role="group" aria-label="Filter venues by accessibility feature"></div>
+        </div>
+
+        <button type="button" id="reset-filters" class="btn-reset">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M20 20v-6h-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.6 15A8 8 0 0 0 20 12M18.4 9A8 8 0 0 0 4 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          Reset filters
+        </button>
+
+        <div class="dot-divider" aria-hidden="true"></div>
+
+        <div class="control-group results-group">
+          <div class="results-head">
+            <h2 class="control-label" id="results-heading">Results</h2>
+            <span id="results-count" class="results-count">0</span>
+          </div>
+          <ul id="results-list" class="results-list" aria-labelledby="results-heading"></ul>
+        </div>
+
+      </div>
+    </aside>
+
+    <div id="map" role="application" aria-label="Map of Melbourne showing accessibility data"></div>
+
+    <div id="map-scrim" class="map-scrim" hidden></div>
+
+    <!-- ============ DETAIL PANEL ============ -->
+    <aside id="detail-panel" class="detail-panel" aria-hidden="true" aria-label="Venue details">
+      <div class="detail-scroll">
+        <button type="button" id="detail-close" class="detail-close" aria-label="Close details">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div id="detail-content"></div>
+      </div>
+    </aside>
+
+  </section>
+
+  <!-- ============ DATA QUALITY VIEW ============ -->
+  <section id="view-quality" class="view" hidden aria-label="Data quality">
+    <div class="page-scroll">
+      <div class="page-inner">
+        <p class="eyebrow">Conflict resolution engine</p>
+        <h1>Data quality &amp; conflict resolution</h1>
+        <p class="lede">Every accessibility feature on this map comes from community reports. When reports about the
+          same venue disagree — one visitor says there's a ramp, another says there isn't — the engine tries to
+          resolve it automatically, but only when the evidence is strong enough to trust. Everything else is left
+          for a human reviewer rather than guessed at. Still-open cases also show a review banner on their venue
+          detail card.</p>
+
+        <div class="stat-row" id="resolution-stats"></div>
+        <p class="engine-note" id="resolution-explainer"></p>
+
+        <div class="dot-divider wide" aria-hidden="true"></div>
+
+        <h2>All detected conflicts</h2>
+        <div class="stat-row" id="quality-stats"></div>
+
+        <div class="dot-divider wide" aria-hidden="true"></div>
+
+        <div class="quality-controls">
+          <div class="search-box search-box--inline">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input id="quality-search" type="text" placeholder="Search flagged venues" autocomplete="off">
+          </div>
+          <div class="chip-row" id="quality-chips" role="group" aria-label="Filter by accessibility feature"></div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="quality-table">
+            <thead>
+              <tr>
+                <th scope="col">Venue</th>
+                <th scope="col">Feature</th>
+                <th scope="col">Community reports</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="quality-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="dot-divider wide" aria-hidden="true"></div>
+
+        <h2>Known issues in this dataset</h2>
+        <p class="lede">These are logged automatically by <code>export_frontend_data.py</code> on every export, so they
+          stay visible instead of being silently dropped.</p>
+
+        <div class="issue-cards" id="issue-cards"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT VIEW ============ -->
+  <section id="view-about" class="view" hidden aria-label="About this project">
+    <div class="page-scroll">
+      <div class="page-inner">
+        <p class="eyebrow">MAST90107 · accessibility data platform</p>
+        <h1>Built on community reports,<br>not assumptions.</h1>
+        <p class="lede">EnAccessMap Melbourne is a student project that turns raw accessibility reports into a map you
+          can actually plan a trip around: step-free entry, accessible bathrooms, seating and parking, plus where the
+          nearest accessible public toilet is.</p>
+
+        <div class="tactile-rule" aria-hidden="true"></div>
+
+        <div class="about-grid">
+          <div>
+            <h2>Inspired by EnAccess Maps</h2>
+            <p>This project's data schema and filter-by-accessibility-criteria approach follow the model pioneered by
+              <a href="https://www.enaccessmaps.com" target="_blank" rel="noopener">EnAccess Maps</a>, a Melbourne
+              not-for-profit founded by Sabrina Leung. Their assessors and volunteer reviewers vet venues on step-free
+              entry, bathrooms, seating and parking — the same four criteria this map filters on.</p>
+          </div>
+          <div>
+            <h2>How confidence is calculated</h2>
+            <p>Each feature — ramp, bathroom, seating, parking — is scored from the share of matching reports.
+              Five people confirming a ramp exists scores higher confidence than one. The five-dot meter on every
+              venue card is a direct read of that evidence count, not a guess.</p>
+          </div>
+          <div>
+            <h2>Four map layers</h2>
+            <p><strong>Venues</strong> — cafes, restaurants, culture and shops with reported accessibility features.
+              <strong>Public toilets</strong> — Victorian council toilet data, accessible facilities highlighted.
+              <strong>Tactile paving (TGSI)</strong> — tactile ground surface indicator points for
+              low-vision and blind wayfinding. <strong>Flagged for review</strong> — venues with disagreeing reports.</p>
+          </div>
+          <div>
+            <h2>Built with</h2>
+            <p>Leaflet.js + OpenStreetMap tiles, a Python export script that turns
+              <code>database/accessibility.sqlite</code> into static JSON, and vanilla HTML/CSS/JS — no build step,
+              hosted for free on GitHub Pages.</p>
+          </div>
+        </div>
+
+        <div class="dot-divider wide" aria-hidden="true"></div>
+
+        <h2>Data sources</h2>
+        <div class="source-list" id="source-list"></div>
+
+        <div class="dot-divider wide" aria-hidden="true"></div>
+
+        <p class="fine-print" id="about-footnote">This is an MVP built for a university unit. Accessibility information
+          reflects community reports, not a guarantee — always call ahead if a visit depends on it.</p>
+      </div>
+    </div>
+  </section>
+  </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
